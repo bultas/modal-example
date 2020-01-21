@@ -2,7 +2,6 @@
   'use strict';
 
   const MicroModal = (() => {
-
     const FOCUSABLE_ELEMENTS = ['a[href]', 'area[href]', 'input:not([disabled]):not([type="hidden"]):not([aria-hidden])', 'select:not([disabled]):not([aria-hidden])', 'textarea:not([disabled]):not([aria-hidden])', 'button:not([disabled]):not([aria-hidden])', 'iframe', 'object', 'embed', '[contenteditable]', '[tabindex]:not([tabindex^="-"])'];
 
     class Modal {
@@ -313,241 +312,62 @@
   })();
 
   // @ts-check
-
-  const createModalHTML = ({ prefix, modalID }) => ({
-    title,
-    content
-  }) => `
-<style>
-  .${prefix}_modal {
-    font-family: -apple-system,BlinkMacSystemFont,avenir next,avenir,helvetica neue,helvetica,ubuntu,roboto,noto,segoe ui,arial,sans-serif;
-  }
-
-  .${prefix}_modal__overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0,0,0,0.6);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .${prefix}_modal__container {
-    background-color: #fff;
-    padding: 30px;
-    max-width: 500px;
-    max-height: 100vh;
-    border-radius: 4px;
-    overflow-y: auto;
-    box-sizing: border-box;
-  }
-
-  .${prefix}_modal__header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .${prefix}_modal__title {
-    margin-top: 0;
-    margin-bottom: 0;
-    font-weight: 600;
-    font-size: 1.25rem;
-    line-height: 1.25;
-    color: #00449e;
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
-  }
-
-  .${prefix}_modal__title > img {
-    max-height: 1em;
-  }
-
-  .${prefix}_modal__title > img + span {
-    margin-left: .5em;
-  }
-
-  .${prefix}_modal__close {
-    background: transparent;
-    border: 0;
-  }
-
-  .${prefix}_modal__header .${prefix}_modal__close:before { content: "\u2715"; }
-
-  .${prefix}_modal__content {
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-    line-height: 1.5;
-    color: rgba(0,0,0,.8);
-  }
-
-  .${prefix}_modal__btn {
-    font-size: .875rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    padding-top: .5rem;
-    padding-bottom: .5rem;
-    background-color: #e6e6e6;
-    color: rgba(0,0,0,.8);
-    border-radius: .25rem;
-    border-style: none;
-    border-width: 0;
-    cursor: pointer;
-    -webkit-appearance: button;
-    text-transform: none;
-    overflow: visible;
-    line-height: 1.15;
-    margin: 0;
-    will-change: transform;
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
-    transition: -webkit-transform .25s ease-out;
-    transition: transform .25s ease-out;
-    transition: transform .25s ease-out,-webkit-transform .25s ease-out;
-  }
-
-  .${prefix}_modal__btn:focus, .${prefix}_modal__btn:hover {
-    -webkit-transform: scale(1.05);
-    transform: scale(1.05);
-  }
-
-  .${prefix}_modal__btn-primary {
-    background-color: #00449e;
-    color: #fff;
-  }
-
-  @keyframes ${prefix}_mmfadeIn {
-      from { opacity: 0; }
-        to { opacity: 1; }
-  }
-
-  @keyframes ${prefix}_mmfadeOut {
-      from { opacity: 1; }
-        to { opacity: 0; }
-  }
-
-  @keyframes ${prefix}_mmslideIn {
-    from { transform: translateY(15%); }
-      to { transform: translateY(0); }
-  }
-
-  @keyframes ${prefix}_mmslideOut {
-      from { transform: translateY(0); }
-      to { transform: translateY(-10%); }
-  }
-
-  .${prefix}_micromodal-slide {
-    display: none;
-  }
-
-  .${prefix}_micromodal-slide.is-open {
-    display: block;
-  }
-
-  .${prefix}_micromodal-slide[aria-hidden="false"] .${prefix}_modal__overlay {
-    animation: mmfadeIn .3s cubic-bezier(0.0, 0.0, 0.2, 1);
-  }
-
-  .${prefix}_micromodal-slide[aria-hidden="false"] .${prefix}_modal__container {
-    animation: mmslideIn .3s cubic-bezier(0, 0, .2, 1);
-  }
-
-  .${prefix}_micromodal-slide[aria-hidden="true"] .${prefix}_modal__overlay {
-    animation: mmfadeOut .3s cubic-bezier(0.0, 0.0, 0.2, 1);
-  }
-
-  .${prefix}_micromodal-slide[aria-hidden="true"] .${prefix}_modal__container {
-    animation: mmslideOut .3s cubic-bezier(0, 0, .2, 1);
-  }
-
-  .${prefix}_micromodal-slide .${prefix}_modal__container,
-  .${prefix}_micromodal-slide .${prefix}_modal__overlay {
-    will-change: transform;
-  }
-</style>
-<div class="${prefix}_modal ${prefix}_micromodal-slide" id="${modalID}" aria-hidden="true">
-<div class="${prefix}_modal__overlay" tabindex="-1" data-micromodal-close>
-  <div class="${prefix}_modal__container" role="dialog" aria-modal="true" aria-labelledby="${prefix}_modal_title_ID">
-    <header class="${prefix}_modal__header">
-      <h2 class="${prefix}_modal__title" id="${prefix}_modal_title_ID">
-        ${title}
-      </h2>
-      <button class="${prefix}_modal__close" aria-label="Close modal" data-micromodal-close></button>
-    </header>
-    <main class="${prefix}_modal__content" id="${prefix}_modal_content_ID">
-      ${content}
-    </main>
-    <footer class="${prefix}_modal__footer">
-      <button class="${prefix}_modal__btn" data-micromodal-close aria-label="Close this dialog window">Close</button>
-    </footer>
-  </div>
-</div>
-</div>
-`;
-
-  const createImage = ({ src, fallback }) =>
-    `<img src='${src}' onerror="this.onerror=null;this.src='${fallback}';" />`;
-
-  const createModalTitle = ({ favicon, location }) => `
-  ${favicon}  
-  <span>Zprava od ${window.location.hostname}</span>
-`;
-
-  const createModalContent = ({ browser }) => `
-  <p>Vas prohlizec</p>
-  <code> ${window.navigator.userAgent}</code>
-  <p>je s nasim webem plne kompatibilni.</p>
-`;
+  var createModalHTML = function createModalHTML(_ref) {
+    var prefix = _ref.prefix,
+        modalID = _ref.modalID;
+    return function (_ref2) {
+      var title = _ref2.title,
+          content = _ref2.content;
+      return "\n<style>\n  .".concat(prefix, "_modal {\n    font-family: -apple-system,BlinkMacSystemFont,avenir next,avenir,helvetica neue,helvetica,ubuntu,roboto,noto,segoe ui,arial,sans-serif;\n  }\n\n  .").concat(prefix, "_modal__overlay {\n    position: fixed;\n    top: 0;\n    left: 0;\n    right: 0;\n    bottom: 0;\n    background: rgba(0,0,0,0.6);\n    display: flex;\n    justify-content: center;\n    align-items: center;\n  }\n\n  .").concat(prefix, "_modal__container {\n    background-color: #fff;\n    padding: 30px;\n    max-width: 500px;\n    max-height: 100vh;\n    border-radius: 4px;\n    overflow-y: auto;\n    box-sizing: border-box;\n  }\n\n  .").concat(prefix, "_modal__header {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n  }\n\n  .").concat(prefix, "_modal__title {\n    margin-top: 0;\n    margin-bottom: 0;\n    font-weight: 600;\n    font-size: 1.25rem;\n    line-height: 1.25;\n    color: #00449e;\n    box-sizing: border-box;\n    display: flex;\n    align-items: center;\n  }\n\n  .").concat(prefix, "_modal__title > img {\n    max-height: 1em;\n  }\n\n  .").concat(prefix, "_modal__title > img + span {\n    margin-left: .5em;\n  }\n\n  .").concat(prefix, "_modal__close {\n    background: transparent;\n    border: 0;\n  }\n\n  .").concat(prefix, "_modal__header .").concat(prefix, "_modal__close:before { content: \"\u2715\"; }\n\n  .").concat(prefix, "_modal__content {\n    margin-top: 2rem;\n    margin-bottom: 2rem;\n    line-height: 1.5;\n    color: rgba(0,0,0,.8);\n  }\n\n  .").concat(prefix, "_modal__btn {\n    font-size: .875rem;\n    padding-left: 1rem;\n    padding-right: 1rem;\n    padding-top: .5rem;\n    padding-bottom: .5rem;\n    background-color: #e6e6e6;\n    color: rgba(0,0,0,.8);\n    border-radius: .25rem;\n    border-style: none;\n    border-width: 0;\n    cursor: pointer;\n    -webkit-appearance: button;\n    text-transform: none;\n    overflow: visible;\n    line-height: 1.15;\n    margin: 0;\n    will-change: transform;\n    -moz-osx-font-smoothing: grayscale;\n    -webkit-backface-visibility: hidden;\n    backface-visibility: hidden;\n    -webkit-transform: translateZ(0);\n    transform: translateZ(0);\n    transition: -webkit-transform .25s ease-out;\n    transition: transform .25s ease-out;\n    transition: transform .25s ease-out,-webkit-transform .25s ease-out;\n  }\n\n  .").concat(prefix, "_modal__btn:focus, .").concat(prefix, "_modal__btn:hover {\n    -webkit-transform: scale(1.05);\n    transform: scale(1.05);\n  }\n\n  .").concat(prefix, "_modal__btn-primary {\n    background-color: #00449e;\n    color: #fff;\n  }\n\n  @keyframes ").concat(prefix, "_mmfadeIn {\n      from { opacity: 0; }\n        to { opacity: 1; }\n  }\n\n  @keyframes ").concat(prefix, "_mmfadeOut {\n      from { opacity: 1; }\n        to { opacity: 0; }\n  }\n\n  @keyframes ").concat(prefix, "_mmslideIn {\n    from { transform: translateY(15%); }\n      to { transform: translateY(0); }\n  }\n\n  @keyframes ").concat(prefix, "_mmslideOut {\n      from { transform: translateY(0); }\n      to { transform: translateY(-10%); }\n  }\n\n  .").concat(prefix, "_micromodal-slide {\n    display: none;\n  }\n\n  .").concat(prefix, "_micromodal-slide.is-open {\n    display: block;\n  }\n\n  .").concat(prefix, "_micromodal-slide[aria-hidden=\"false\"] .").concat(prefix, "_modal__overlay {\n    animation: mmfadeIn .3s cubic-bezier(0.0, 0.0, 0.2, 1);\n  }\n\n  .").concat(prefix, "_micromodal-slide[aria-hidden=\"false\"] .").concat(prefix, "_modal__container {\n    animation: mmslideIn .3s cubic-bezier(0, 0, .2, 1);\n  }\n\n  .").concat(prefix, "_micromodal-slide[aria-hidden=\"true\"] .").concat(prefix, "_modal__overlay {\n    animation: mmfadeOut .3s cubic-bezier(0.0, 0.0, 0.2, 1);\n  }\n\n  .").concat(prefix, "_micromodal-slide[aria-hidden=\"true\"] .").concat(prefix, "_modal__container {\n    animation: mmslideOut .3s cubic-bezier(0, 0, .2, 1);\n  }\n\n  .").concat(prefix, "_micromodal-slide .").concat(prefix, "_modal__container,\n  .").concat(prefix, "_micromodal-slide .").concat(prefix, "_modal__overlay {\n    will-change: transform;\n  }\n</style>\n<div class=\"").concat(prefix, "_modal ").concat(prefix, "_micromodal-slide\" id=\"").concat(modalID, "\" aria-hidden=\"true\">\n<div class=\"").concat(prefix, "_modal__overlay\" tabindex=\"-1\" data-micromodal-close>\n  <div class=\"").concat(prefix, "_modal__container\" role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"").concat(prefix, "_modal_title_ID\">\n    <header class=\"").concat(prefix, "_modal__header\">\n      <h2 class=\"").concat(prefix, "_modal__title\" id=\"").concat(prefix, "_modal_title_ID\">\n        ").concat(title, "\n      </h2>\n      <button class=\"").concat(prefix, "_modal__close\" aria-label=\"Close modal\" data-micromodal-close></button>\n    </header>\n    <main class=\"").concat(prefix, "_modal__content\" id=\"").concat(prefix, "_modal_content_ID\">\n      ").concat(content, "\n    </main>\n    <footer class=\"").concat(prefix, "_modal__footer\">\n      <button class=\"").concat(prefix, "_modal__btn\" data-micromodal-close aria-label=\"Close this dialog window\">Close</button>\n    </footer>\n  </div>\n</div>\n</div>\n");
+    };
+  };
+  var createImage = function createImage(_ref3) {
+    var src = _ref3.src,
+        fallback = _ref3.fallback;
+    return "<img src='".concat(src, "' onerror=\"this.onerror=null;this.src='").concat(fallback, "';\" />");
+  };
+  var createModalTitle = function createModalTitle(_ref4) {
+    var favicon = _ref4.favicon,
+        location = _ref4.location;
+    return "\n  ".concat(favicon, "  \n  <span>Zprava od ").concat(window.location.hostname, "</span>\n");
+  };
+  var createModalContent = function createModalContent(_ref5) {
+    var browser = _ref5.browser;
+    return "\n  <p>Vas prohlizec</p>\n  <code> ".concat(window.navigator.userAgent, "</code>\n  <p>je s nasim webem plne kompatibilni.</p>\n");
+  };
 
   // @ts-check
-
-  const createModalElement = innerHTML => {
-    const modalElement = document.createElement("div");
+  var createModalElement = function createModalElement(innerHTML) {
+    var modalElement = document.createElement("div");
     modalElement.innerHTML = innerHTML;
-
     return modalElement;
   };
 
   // @ts-check
-
-  const prefix = `_${Math.random()
-  .toString(36)
-  .substring(7)}`;
-
-  const MODAL_ID = `${prefix}_modal`;
-  const modalTemplate = createModalHTML({ prefix, modalID: MODAL_ID });
-
-  const favicon = createImage({
+  var prefix = "_".concat(Math.random().toString(36).substring(7));
+  var MODAL_ID = "".concat(prefix, "_modal");
+  var modalTemplate = createModalHTML({
+    prefix: prefix,
+    modalID: MODAL_ID
+  });
+  var favicon = createImage({
     src: "/favicon.ico",
     fallback: "//google.com/favicon.ico"
   });
-
-  const modalContent = createModalContent({
+  var modalContent = createModalContent({
     browser: window.navigator.userAgent
   });
-
-  const modalTitle = createModalTitle({
+  var modalTitle = createModalTitle({
     location: window.location.hostname,
     favicon: favicon
   });
-
-  const modalHTML = modalTemplate({
+  var modalHTML = modalTemplate({
     title: modalTitle,
     content: modalContent
   });
-
-  const modalElement = createModalElement(modalHTML);
-
-  setTimeout(() => {
+  var modalElement = createModalElement(modalHTML);
+  setTimeout(function () {
     document.body.appendChild(modalElement);
-
     MicroModal.init();
     MicroModal.show(MODAL_ID);
   }, 0);
