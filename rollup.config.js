@@ -7,5 +7,5 @@ export default {
     file: "./dist/modal.js",
     format: "iife"
   },
-  plugins: [resolve(), babel()]
+  plugins: [babel(), resolve()]
 };

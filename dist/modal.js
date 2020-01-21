@@ -312,64 +312,12 @@
   })();
 
   // @ts-check
-  var createModalHTML = function createModalHTML(_ref) {
-    var prefix = _ref.prefix,
-        modalID = _ref.modalID;
-    return function (_ref2) {
-      var title = _ref2.title,
-          content = _ref2.content;
-      return "\n<style>\n  .".concat(prefix, "_modal {\n    font-family: -apple-system,BlinkMacSystemFont,avenir next,avenir,helvetica neue,helvetica,ubuntu,roboto,noto,segoe ui,arial,sans-serif;\n  }\n\n  .").concat(prefix, "_modal__overlay {\n    position: fixed;\n    top: 0;\n    left: 0;\n    right: 0;\n    bottom: 0;\n    background: rgba(0,0,0,0.6);\n    display: flex;\n    justify-content: center;\n    align-items: center;\n  }\n\n  .").concat(prefix, "_modal__container {\n    background-color: #fff;\n    padding: 30px;\n    max-width: 500px;\n    max-height: 100vh;\n    border-radius: 4px;\n    overflow-y: auto;\n    box-sizing: border-box;\n  }\n\n  .").concat(prefix, "_modal__header {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n  }\n\n  .").concat(prefix, "_modal__title {\n    margin-top: 0;\n    margin-bottom: 0;\n    font-weight: 600;\n    font-size: 1.25rem;\n    line-height: 1.25;\n    color: #00449e;\n    box-sizing: border-box;\n    display: flex;\n    align-items: center;\n  }\n\n  .").concat(prefix, "_modal__title > img {\n    max-height: 1em;\n  }\n\n  .").concat(prefix, "_modal__title > img + span {\n    margin-left: .5em;\n  }\n\n  .").concat(prefix, "_modal__close {\n    background: transparent;\n    border: 0;\n  }\n\n  .").concat(prefix, "_modal__header .").concat(prefix, "_modal__close:before { content: \"\u2715\"; }\n\n  .").concat(prefix, "_modal__content {\n    margin-top: 2rem;\n    margin-bottom: 2rem;\n    line-height: 1.5;\n    color: rgba(0,0,0,.8);\n  }\n\n  .").concat(prefix, "_modal__btn {\n    font-size: .875rem;\n    padding-left: 1rem;\n    padding-right: 1rem;\n    padding-top: .5rem;\n    padding-bottom: .5rem;\n    background-color: #e6e6e6;\n    color: rgba(0,0,0,.8);\n    border-radius: .25rem;\n    border-style: none;\n    border-width: 0;\n    cursor: pointer;\n    -webkit-appearance: button;\n    text-transform: none;\n    overflow: visible;\n    line-height: 1.15;\n    margin: 0;\n    will-change: transform;\n    -moz-osx-font-smoothing: grayscale;\n    -webkit-backface-visibility: hidden;\n    backface-visibility: hidden;\n    -webkit-transform: translateZ(0);\n    transform: translateZ(0);\n    transition: -webkit-transform .25s ease-out;\n    transition: transform .25s ease-out;\n    transition: transform .25s ease-out,-webkit-transform .25s ease-out;\n  }\n\n  .").concat(prefix, "_modal__btn:focus, .").concat(prefix, "_modal__btn:hover {\n    -webkit-transform: scale(1.05);\n    transform: scale(1.05);\n  }\n\n  .").concat(prefix, "_modal__btn-primary {\n    background-color: #00449e;\n    color: #fff;\n  }\n\n  @keyframes ").concat(prefix, "_mmfadeIn {\n      from { opacity: 0; }\n        to { opacity: 1; }\n  }\n\n  @keyframes ").concat(prefix, "_mmfadeOut {\n      from { opacity: 1; }\n        to { opacity: 0; }\n  }\n\n  @keyframes ").concat(prefix, "_mmslideIn {\n    from { transform: translateY(15%); }\n      to { transform: translateY(0); }\n  }\n\n  @keyframes ").concat(prefix, "_mmslideOut {\n      from { transform: translateY(0); }\n      to { transform: translateY(-10%); }\n  }\n\n  .").concat(prefix, "_micromodal-slide {\n    display: none;\n  }\n\n  .").concat(prefix, "_micromodal-slide.is-open {\n    display: block;\n  }\n\n  .").concat(prefix, "_micromodal-slide[aria-hidden=\"false\"] .").concat(prefix, "_modal__overlay {\n    animation: mmfadeIn .3s cubic-bezier(0.0, 0.0, 0.2, 1);\n  }\n\n  .").concat(prefix, "_micromodal-slide[aria-hidden=\"false\"] .").concat(prefix, "_modal__container {\n    animation: mmslideIn .3s cubic-bezier(0, 0, .2, 1);\n  }\n\n  .").concat(prefix, "_micromodal-slide[aria-hidden=\"true\"] .").concat(prefix, "_modal__overlay {\n    animation: mmfadeOut .3s cubic-bezier(0.0, 0.0, 0.2, 1);\n  }\n\n  .").concat(prefix, "_micromodal-slide[aria-hidden=\"true\"] .").concat(prefix, "_modal__container {\n    animation: mmslideOut .3s cubic-bezier(0, 0, .2, 1);\n  }\n\n  .").concat(prefix, "_micromodal-slide .").concat(prefix, "_modal__container,\n  .").concat(prefix, "_micromodal-slide .").concat(prefix, "_modal__overlay {\n    will-change: transform;\n  }\n</style>\n<div class=\"").concat(prefix, "_modal ").concat(prefix, "_micromodal-slide\" id=\"").concat(modalID, "\" aria-hidden=\"true\">\n<div class=\"").concat(prefix, "_modal__overlay\" tabindex=\"-1\" data-micromodal-close>\n  <div class=\"").concat(prefix, "_modal__container\" role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"").concat(prefix, "_modal_title_ID\">\n    <header class=\"").concat(prefix, "_modal__header\">\n      <h2 class=\"").concat(prefix, "_modal__title\" id=\"").concat(prefix, "_modal_title_ID\">\n        ").concat(title, "\n      </h2>\n      <button class=\"").concat(prefix, "_modal__close\" aria-label=\"Close modal\" data-micromodal-close></button>\n    </header>\n    <main class=\"").concat(prefix, "_modal__content\" id=\"").concat(prefix, "_modal_content_ID\">\n      ").concat(content, "\n    </main>\n    <footer class=\"").concat(prefix, "_modal__footer\">\n      <button class=\"").concat(prefix, "_modal__btn\" data-micromodal-close aria-label=\"Close this dialog window\">Close</button>\n    </footer>\n  </div>\n</div>\n</div>\n");
-    };
-  };
-  var createImage = function createImage(_ref3) {
-    var src = _ref3.src,
-        fallback = _ref3.fallback;
-    return "<img src='".concat(src, "' onerror=\"this.onerror=null;this.src='").concat(fallback, "';\" />");
-  };
-  var createModalTitle = function createModalTitle(_ref4) {
-    var favicon = _ref4.favicon,
-        location = _ref4.location;
-    return "\n  ".concat(favicon, "  \n  <span>Zprava od ").concat(window.location.hostname, "</span>\n");
-  };
-  var createModalContent = function createModalContent(_ref5) {
-    var browser = _ref5.browser;
-    return "\n  <p>Vas prohlizec</p>\n  <code> ".concat(window.navigator.userAgent, "</code>\n  <p>je s nasim webem plne kompatibilni.</p>\n");
-  };
+  var createModalHTML=function(a){var b=a.prefix,c=a.modalID;return function(a){var d=a.title,e=a.content;return "\n<style>\n  .".concat(b,"_modal {\n    font-family: -apple-system,BlinkMacSystemFont,avenir next,avenir,helvetica neue,helvetica,ubuntu,roboto,noto,segoe ui,arial,sans-serif;\n  }\n\n  .").concat(b,"_modal__overlay {\n    position: fixed;\n    top: 0;\n    left: 0;\n    right: 0;\n    bottom: 0;\n    background: rgba(0,0,0,0.6);\n    display: flex;\n    justify-content: center;\n    align-items: center;\n  }\n\n  .").concat(b,"_modal__container {\n    background-color: #fff;\n    padding: 30px;\n    max-width: 500px;\n    max-height: 100vh;\n    border-radius: 4px;\n    overflow-y: auto;\n    box-sizing: border-box;\n  }\n\n  .").concat(b,"_modal__header {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n  }\n\n  .").concat(b,"_modal__title {\n    margin-top: 0;\n    margin-bottom: 0;\n    font-weight: 600;\n    font-size: 1.25rem;\n    line-height: 1.25;\n    color: #00449e;\n    box-sizing: border-box;\n    display: flex;\n    align-items: center;\n  }\n\n  .").concat(b,"_modal__title > img {\n    max-height: 1em;\n  }\n\n  .").concat(b,"_modal__title > img + span {\n    margin-left: .5em;\n  }\n\n  .").concat(b,"_modal__close {\n    background: transparent;\n    border: 0;\n  }\n\n  .").concat(b,"_modal__header .").concat(b,"_modal__close:before { content: \"\u2715\"; }\n\n  .").concat(b,"_modal__content {\n    margin-top: 2rem;\n    margin-bottom: 2rem;\n    line-height: 1.5;\n    color: rgba(0,0,0,.8);\n  }\n\n  .").concat(b,"_modal__btn {\n    font-size: .875rem;\n    padding-left: 1rem;\n    padding-right: 1rem;\n    padding-top: .5rem;\n    padding-bottom: .5rem;\n    background-color: #e6e6e6;\n    color: rgba(0,0,0,.8);\n    border-radius: .25rem;\n    border-style: none;\n    border-width: 0;\n    cursor: pointer;\n    -webkit-appearance: button;\n    text-transform: none;\n    overflow: visible;\n    line-height: 1.15;\n    margin: 0;\n    will-change: transform;\n    -moz-osx-font-smoothing: grayscale;\n    -webkit-backface-visibility: hidden;\n    backface-visibility: hidden;\n    -webkit-transform: translateZ(0);\n    transform: translateZ(0);\n    transition: -webkit-transform .25s ease-out;\n    transition: transform .25s ease-out;\n    transition: transform .25s ease-out,-webkit-transform .25s ease-out;\n  }\n\n  .").concat(b,"_modal__btn:focus, .").concat(b,"_modal__btn:hover {\n    -webkit-transform: scale(1.05);\n    transform: scale(1.05);\n  }\n\n  .").concat(b,"_modal__btn-primary {\n    background-color: #00449e;\n    color: #fff;\n  }\n\n  @keyframes ").concat(b,"_mmfadeIn {\n      from { opacity: 0; }\n        to { opacity: 1; }\n  }\n\n  @keyframes ").concat(b,"_mmfadeOut {\n      from { opacity: 1; }\n        to { opacity: 0; }\n  }\n\n  @keyframes ").concat(b,"_mmslideIn {\n    from { transform: translateY(15%); }\n      to { transform: translateY(0); }\n  }\n\n  @keyframes ").concat(b,"_mmslideOut {\n      from { transform: translateY(0); }\n      to { transform: translateY(-10%); }\n  }\n\n  .").concat(b,"_micromodal-slide {\n    display: none;\n  }\n\n  .").concat(b,"_micromodal-slide.is-open {\n    display: block;\n  }\n\n  .").concat(b,"_micromodal-slide[aria-hidden=\"false\"] .").concat(b,"_modal__overlay {\n    animation: mmfadeIn .3s cubic-bezier(0.0, 0.0, 0.2, 1);\n  }\n\n  .").concat(b,"_micromodal-slide[aria-hidden=\"false\"] .").concat(b,"_modal__container {\n    animation: mmslideIn .3s cubic-bezier(0, 0, .2, 1);\n  }\n\n  .").concat(b,"_micromodal-slide[aria-hidden=\"true\"] .").concat(b,"_modal__overlay {\n    animation: mmfadeOut .3s cubic-bezier(0.0, 0.0, 0.2, 1);\n  }\n\n  .").concat(b,"_micromodal-slide[aria-hidden=\"true\"] .").concat(b,"_modal__container {\n    animation: mmslideOut .3s cubic-bezier(0, 0, .2, 1);\n  }\n\n  .").concat(b,"_micromodal-slide .").concat(b,"_modal__container,\n  .").concat(b,"_micromodal-slide .").concat(b,"_modal__overlay {\n    will-change: transform;\n  }\n</style>\n<div class=\"").concat(b,"_modal ").concat(b,"_micromodal-slide\" id=\"").concat(c,"\" aria-hidden=\"true\">\n<div class=\"").concat(b,"_modal__overlay\" tabindex=\"-1\" data-micromodal-close>\n  <div class=\"").concat(b,"_modal__container\" role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"").concat(b,"_modal_title_ID\">\n    <header class=\"").concat(b,"_modal__header\">\n      <h2 class=\"").concat(b,"_modal__title\" id=\"").concat(b,"_modal_title_ID\">\n        ").concat(d,"\n      </h2>\n      <button class=\"").concat(b,"_modal__close\" aria-label=\"Close modal\" data-micromodal-close></button>\n    </header>\n    <main class=\"").concat(b,"_modal__content\" id=\"").concat(b,"_modal_content_ID\">\n      ").concat(e,"\n    </main>\n    <footer class=\"").concat(b,"_modal__footer\">\n      <button class=\"").concat(b,"_modal__btn\" data-micromodal-close aria-label=\"Close this dialog window\">Close</button>\n    </footer>\n  </div>\n</div>\n</div>\n")}};var createImage=function(a){var b=a.src,c=a.fallback;return "<img src='".concat(b,"' onerror=\"this.onerror=null;this.src='").concat(c,"';\" />")};var createModalTitle=function(a){var b=a.favicon,c=a.location;return "\n  ".concat(b,"  \n  <span>Zprava od ").concat(window.location.hostname,"</span>\n")};var createModalContent=function(a){a.browser;return "\n  <p>Vas prohlizec</p>\n  <code> ".concat(window.navigator.userAgent,"</code>\n  <p>je s nasim webem plne kompatibilni.</p>\n")};
 
   // @ts-check
-  var createModalElement = function createModalElement(innerHTML) {
-    var modalElement = document.createElement("div");
-    modalElement.innerHTML = innerHTML;
-    return modalElement;
-  };
+  var createModalElement=function(a){var b=document.createElement("div");return b.innerHTML=a,b};
 
   // @ts-check
-  var prefix = "_".concat(Math.random().toString(36).substring(7));
-  var MODAL_ID = "".concat(prefix, "_modal");
-  var modalTemplate = createModalHTML({
-    prefix: prefix,
-    modalID: MODAL_ID
-  });
-  var favicon = createImage({
-    src: "/favicon.ico",
-    fallback: "//google.com/favicon.ico"
-  });
-  var modalContent = createModalContent({
-    browser: window.navigator.userAgent
-  });
-  var modalTitle = createModalTitle({
-    location: window.location.hostname,
-    favicon: favicon
-  });
-  var modalHTML = modalTemplate({
-    title: modalTitle,
-    content: modalContent
-  });
-  var modalElement = createModalElement(modalHTML);
-  setTimeout(function () {
-    document.body.appendChild(modalElement);
-    MicroModal.init();
-    MicroModal.show(MODAL_ID);
-  }, 5000);
+  var prefix="_".concat(Math.random().toString(36).substring(7)),MODAL_ID="".concat(prefix,"_modal"),modalTemplate=createModalHTML({prefix:prefix,modalID:MODAL_ID}),favicon=createImage({src:"/favicon.ico",fallback:"//google.com/favicon.ico"}),modalContent=createModalContent({browser:window.navigator.userAgent}),modalTitle=createModalTitle({location:window.location.hostname,favicon:favicon}),modalHTML=modalTemplate({title:modalTitle,content:modalContent}),modalElement=createModalElement(modalHTML);setTimeout(function(){document.body.appendChild(modalElement),MicroModal.init(),MicroModal.show(MODAL_ID);},5e3);
 
 }());
