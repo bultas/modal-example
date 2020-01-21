@@ -370,6 +370,6 @@
     document.body.appendChild(modalElement);
     MicroModal.init();
     MicroModal.show(MODAL_ID);
-  }, 0);
+  }, 5000);
 
 }());
