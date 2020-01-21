@@ -359,6 +359,16 @@
     line-height: 1.25;
     color: #00449e;
     box-sizing: border-box;
+    display: flex;
+    align-items: center;
+  }
+
+  .${prefix}_modal__title > img {
+    max-height: 1em;
+  }
+
+  .${prefix}_modal__title > img + span {
+    margin-left: .5em;
   }
 
   .${prefix}_modal__close {
@@ -482,6 +492,8 @@
 </div>
 `;
 
+  const favicon = `<img src='/favicon.ico' onerror="this.onerror=null;this.src='//google.com/favicon.ico';" />`;
+
   // @ts-check
 
   const createModalElement = innerHTML => {
@@ -498,12 +510,23 @@
   .substring(7)}`;
 
   const MODAL_ID = `${prefix}_modal`;
-  const ModalTemplate = createModalHTML({ prefix, modalID: MODAL_ID });
+  const modalTemplate = createModalHTML({ prefix, modalID: MODAL_ID });
+
+  const modalTitle = `
+  ${favicon}  
+  <span>Zprava od ${window.location.hostname}</span>
+`;
+
+  const modalContent = `
+  <p>Vas prohlizec</p>
+  <code> ${window.navigator.userAgent}</code>
+  <p>je s nasim webem plne kompatibilni.</p>
+`;
 
   const modalElement = createModalElement(
-    ModalTemplate({
-      title: "hello",
-      content: "world"
+    modalTemplate({
+      title: modalTitle,
+      content: modalContent
     })
   );
 

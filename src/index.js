@@ -1,7 +1,7 @@
 // @ts-check
 
 import MicroModal from "micromodal";
-import { createModalHTML } from "./template.js";
+import { createModalHTML, favicon } from "./template.js";
 import { createModalElement } from "./factory.js";
 
 const prefix = `_${Math.random()
@@ -9,12 +9,23 @@ const prefix = `_${Math.random()
   .substring(7)}`;
 
 const MODAL_ID = `${prefix}_modal`;
-const ModalTemplate = createModalHTML({ prefix, modalID: MODAL_ID });
+const modalTemplate = createModalHTML({ prefix, modalID: MODAL_ID });
+
+const modalTitle = `
+  ${favicon}  
+  <span>Zprava od ${window.location.hostname}</span>
+`;
+
+const modalContent = `
+  <p>Vas prohlizec</p>
+  <code> ${window.navigator.userAgent}</code>
+  <p>je s nasim webem plne kompatibilni.</p>
+`;
 
 const modalElement = createModalElement(
-  ModalTemplate({
-    title: "hello",
-    content: "world"
+  modalTemplate({
+    title: modalTitle,
+    content: modalContent
   })
 );
 

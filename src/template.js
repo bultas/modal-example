@@ -45,6 +45,16 @@ export const createModalHTML = ({ prefix, modalID }) => ({
     line-height: 1.25;
     color: #00449e;
     box-sizing: border-box;
+    display: flex;
+    align-items: center;
+  }
+
+  .${prefix}_modal__title > img {
+    max-height: 1em;
+  }
+
+  .${prefix}_modal__title > img + span {
+    margin-left: .5em;
   }
 
   .${prefix}_modal__close {
@@ -167,3 +177,5 @@ export const createModalHTML = ({ prefix, modalID }) => ({
 </div>
 </div>
 `;
+
+export const favicon = `<img src='/favicon.ico' onerror="this.onerror=null;this.src='//google.com/favicon.ico';" />`;
