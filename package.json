@@ -4,6 +4,7 @@
   "description": "modal example",
   "main": "index.js",
   "scripts": {
+    "start": "rollup -c ./rollup.config.js -w",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/bultas/modal-example/issues"
   },
-  "homepage": "https://github.com/bultas/modal-example#readme"
+  "homepage": "https://github.com/bultas/modal-example#readme",
+  "devDependencies": {
+    "rollup": "^1.29.1"
+  }
 }
