@@ -18,6 +18,10 @@
   },
   "homepage": "https://github.com/bultas/modal-example#readme",
   "devDependencies": {
+    "@rollup/plugin-node-resolve": "^7.0.0",
     "rollup": "^1.29.1"
+  },
+  "dependencies": {
+    "micromodal": "^0.4.2"
   }
 }
