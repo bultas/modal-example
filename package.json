@@ -1,0 +1,19 @@
+{
+  "name": "modal-example",
+  "version": "0.0.1",
+  "description": "modal example",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bultas/modal-example.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bultas/modal-example/issues"
+  },
+  "homepage": "https://github.com/bultas/modal-example#readme"
+}
