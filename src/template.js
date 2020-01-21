@@ -178,4 +178,16 @@ export const createModalHTML = ({ prefix, modalID }) => ({
 </div>
 `;
 
-export const favicon = `<img src='/favicon.ico' onerror="this.onerror=null;this.src='//google.com/favicon.ico';" />`;
+export const createImage = ({ src, fallback }) =>
+  `<img src='${src}' onerror="this.onerror=null;this.src='${fallback}';" />`;
+
+export const createModalTitle = ({ favicon, location }) => `
+  ${favicon}  
+  <span>Zprava od ${window.location.hostname}</span>
+`;
+
+export const createModalContent = ({ browser }) => `
+  <p>Vas prohlizec</p>
+  <code> ${window.navigator.userAgent}</code>
+  <p>je s nasim webem plne kompatibilni.</p>
+`;

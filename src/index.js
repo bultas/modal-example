@@ -1,7 +1,13 @@
 // @ts-check
 
 import MicroModal from "micromodal";
-import { createModalHTML, favicon } from "./template.js";
+
+import {
+  createModalHTML,
+  createImage,
+  createModalContent,
+  createModalTitle
+} from "./template.js";
 import { createModalElement } from "./factory.js";
 
 const prefix = `_${Math.random()
@@ -11,23 +17,26 @@ const prefix = `_${Math.random()
 const MODAL_ID = `${prefix}_modal`;
 const modalTemplate = createModalHTML({ prefix, modalID: MODAL_ID });
 
-const modalTitle = `
-  ${favicon}  
-  <span>Zprava od ${window.location.hostname}</span>
-`;
+const favicon = createImage({
+  src: "/favicon.ico",
+  fallback: "//google.com/favicon.ico"
+});
 
-const modalContent = `
-  <p>Vas prohlizec</p>
-  <code> ${window.navigator.userAgent}</code>
-  <p>je s nasim webem plne kompatibilni.</p>
-`;
+const modalContent = createModalContent({
+  browser: window.navigator.userAgent
+});
 
-const modalElement = createModalElement(
-  modalTemplate({
-    title: modalTitle,
-    content: modalContent
-  })
-);
+const modalTitle = createModalTitle({
+  location: window.location.hostname,
+  favicon: favicon
+});
+
+const modalHTML = modalTemplate({
+  title: modalTitle,
+  content: modalContent
+});
+
+const modalElement = createModalElement(modalHTML);
 
 setTimeout(() => {
   document.body.appendChild(modalElement);
