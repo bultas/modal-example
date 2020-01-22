@@ -9,11 +9,11 @@ export default {
     format: "iife"
   },
   plugins: [
+    resolve(),
     babel({
       babelrc: false,
       presets: ["@babel/preset-env"]
     }),
-    resolve(),
     terser()
   ]
 };
